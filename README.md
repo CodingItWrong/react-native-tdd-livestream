@@ -7,7 +7,6 @@ A React Native project being built with TDD on [my Twitch live stream](https://w
 - [Node](https://nodejs.org/en/)
 - [Yarn](https://yarnpkg.com/en/docs/install)
 - [Xcode](https://developer.apple.com/xcode/)
-- [Detox CLI](https://github.com/wix/detox/blob/master/docs/Introduction.GettingStarted.md)
 
 ## Installation
 
