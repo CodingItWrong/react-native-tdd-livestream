@@ -1,4 +1,4 @@
-module.export = {
+module.exports = {
   extends: [
     'plugin:react/recommended',
     'codingitwrong',
