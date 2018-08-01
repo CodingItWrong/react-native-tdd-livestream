@@ -9,7 +9,7 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View
+  View,
 } from 'react-native';
 
 const instructions = Platform.select({
@@ -24,7 +24,7 @@ export default class App extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
+        <Text style={styles.welcome} testID="welcome">
           Welcome to React Native!
         </Text>
         <Text style={styles.instructions}>
