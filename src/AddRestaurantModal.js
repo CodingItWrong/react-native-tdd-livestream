@@ -23,6 +23,8 @@ export default class AddRestaurantModal extends Component {
     const { onSave } = this.props;
     const { restaurantName } = this.state;
 
+    this.setState({ restaurantName: '' });
+
     onSave(restaurantName);
   }
 
