@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import {
-  Button,
   FlatList,
-  Text,
   View,
 } from 'react-native';
+import {
+  Button,
+  List,
+  ListItem,
+  Text,
+} from 'react-native-elements';
 import AddRestaurantModal from './AddRestaurantModal';
 
 export default class RestaurantList extends Component {
@@ -28,6 +32,7 @@ export default class RestaurantList extends Component {
     const { isAddModalVisible, restaurantNames } = this.state;
     return (
       <View>
+        <Text h2>Restaurants</Text>
         <Button
           title="New Restaurant"
           testID="newRestaurantButton"
@@ -37,11 +42,13 @@ export default class RestaurantList extends Component {
           visible={isAddModalVisible}
           onSave={this.handleAddRestaurant}
         />
-        <FlatList
-          data={restaurantNames}
-          keyExtractor={item => item}
-          renderItem={({ item }) => <Text>{item}</Text>}
-        />
+        <List>
+          <FlatList
+            data={restaurantNames}
+            keyExtractor={item => item}
+            renderItem={({ item }) => <ListItem title={item} />}
+          />
+        </List>
       </View>
     );
   }

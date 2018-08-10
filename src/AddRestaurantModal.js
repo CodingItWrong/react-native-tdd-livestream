@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import {
-  Button,
-  TextInput,
   View,
 } from 'react-native';
+import {
+  Button,
+  FormLabel,
+  FormInput,
+  Text,
+} from 'react-native-elements';
 
 export default class AddRestaurantModal extends Component {
   state = {
@@ -31,7 +35,9 @@ export default class AddRestaurantModal extends Component {
 
     return (
       <View>
-        <TextInput
+        <Text h3>Add Restaurant</Text>
+        <FormLabel>Restaurant Name</FormLabel>
+        <FormInput
           testID="restaurantNameTextField"
           value={restaurantName}
           onChangeText={this.handleChangeText}
