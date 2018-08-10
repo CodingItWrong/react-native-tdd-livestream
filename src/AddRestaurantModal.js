@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  Modal,
   View,
 } from 'react-native';
 import {
@@ -29,12 +30,11 @@ export default class AddRestaurantModal extends Component {
     const { visible } = this.props;
     const { restaurantName } = this.state;
 
-    if (!visible) {
-      return null;
-    }
-
     return (
-      <View>
+      <Modal
+        visible={visible}
+        animationType='slide'
+      >
         <Text h3>Add Restaurant</Text>
         <FormLabel>Restaurant Name</FormLabel>
         <FormInput
@@ -47,7 +47,7 @@ export default class AddRestaurantModal extends Component {
           title="Save Restaurant"
           onPress={this.handlePressSaveButton}
         />
-      </View>
+      </Modal>
     );
   }
 };
