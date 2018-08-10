@@ -7,43 +7,34 @@ describe('AddRestaurantModal', () => {
     return cmp => cmp.props().testID === id;
   }
 
-  it('clears the text field when submitted', () => {
+  describe('upon submit', () => {
     const messageText = 'Hello, world!';
+    let handleSave;
+    let wrapper;
 
-    const handleSave = jest.fn();
-    const wrapper = shallow(
-      <AddRestaurantModal
-        visible={true}
-        onSave={handleSave}
-      />,
-    );
+    beforeEach(() => {
+      handleSave = jest.fn();
+      wrapper = shallow(
+        <AddRestaurantModal
+          visible={true}
+          onSave={handleSave}
+        />,
+      );
 
-    wrapper.findWhere(testID('restaurantNameTextField'))
-      .simulate('changeText', messageText);
-    wrapper.findWhere(testID('saveRestaurantButton'))
-      .simulate('press');
+      wrapper.findWhere(testID('restaurantNameTextField'))
+        .simulate('changeText', messageText);
+      wrapper.findWhere(testID('saveRestaurantButton'))
+        .simulate('press');
+    });
 
-    expect(wrapper.findWhere(
-      testID('restaurantNameTextField'),
-    ).props().value).toEqual('');
-  });
+    it('clears the text field', () => {
+      expect(wrapper.findWhere(
+        testID('restaurantNameTextField'),
+      ).props().value).toEqual('');
+    });
 
-  it('calls the onSave handler with the entered text', () => {
-    const messageText = 'Hello, world!';
-
-    const handleSave = jest.fn();
-    const wrapper = shallow(
-      <AddRestaurantModal
-        visible={true}
-        onSave={handleSave}
-      />,
-    );
-
-    wrapper.findWhere(testID('restaurantNameTextField'))
-      .simulate('changeText', messageText);
-    wrapper.findWhere(testID('saveRestaurantButton'))
-      .simulate('press');
-
-    expect(handleSave).toHaveBeenCalledWith(messageText);
+    it('calls the onSave handler with the entered text', () => {
+      expect(handleSave).toHaveBeenCalledWith(messageText);
+    });
   });
 });
