@@ -7,11 +7,14 @@ import {
   Button,
   List,
   ListItem,
-  Text,
 } from 'react-native-elements';
 import AddRestaurantModal from './AddRestaurantModal';
 
 export default class RestaurantList extends Component {
+  static navigationOptions = {
+    title: 'Restaurants',
+  }
+
   state = {
     isAddModalVisible: false,
     restaurantNames: [],
@@ -32,7 +35,6 @@ export default class RestaurantList extends Component {
     const { isAddModalVisible, restaurantNames } = this.state;
     return (
       <View>
-        <Text h2>Restaurants</Text>
         <Button
           title="New Restaurant"
           testID="newRestaurantButton"
