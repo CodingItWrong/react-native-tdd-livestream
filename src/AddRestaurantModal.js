@@ -35,7 +35,9 @@ export default class AddRestaurantModal extends Component {
         visible={visible}
         animationType='slide'
       >
-        <Text h3>Add Restaurant</Text>
+        <Text h3 style={{ margin: 20 }}>
+          Add Restaurant
+        </Text>
         <FormLabel>Restaurant Name</FormLabel>
         <FormInput
           testID="restaurantNameTextField"
