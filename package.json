@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "react": "16.3.1",
-    "react-native": "0.55.4"
+    "react-native": "0.55.4",
+    "react-native-elements": "^0.19.1",
+    "react-native-vector-icons": "^5.0.0"
   },
   "devDependencies": {
     "@jonny/react-native-mock": "^0.4.2",
