@@ -34,7 +34,7 @@ export default class RestaurantList extends Component {
   render() {
     const { isAddModalVisible, restaurantNames } = this.state;
     return (
-      <View>
+      <View style={{ flex: 1 }}>
         <Button
           title="New Restaurant"
           testID="newRestaurantButton"
@@ -44,7 +44,7 @@ export default class RestaurantList extends Component {
           visible={isAddModalVisible}
           onSave={this.handleAddRestaurant}
         />
-        <List>
+        <List containerStyle={{ flex: 1 }}>
           <FlatList
             data={restaurantNames}
             keyExtractor={item => item}
