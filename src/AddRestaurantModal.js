@@ -50,6 +50,7 @@ export default class AddRestaurantModal extends Component {
           testID="restaurantNameTextField"
           value={restaurantName}
           onChangeText={this.handleChangeText}
+          autoFocus={true}
         />
         <Button
           testID="saveRestaurantButton"
