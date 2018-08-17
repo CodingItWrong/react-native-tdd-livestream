@@ -31,6 +31,12 @@ export default class RestaurantList extends Component {
     }));
   }
 
+  handleCancelAddRestaurant = () => {
+    this.setState({
+      isAddModalVisible: false,
+    });
+  }
+
   render() {
     const { isAddModalVisible, restaurantNames } = this.state;
     return (
@@ -43,6 +49,7 @@ export default class RestaurantList extends Component {
         <AddRestaurantModal
           visible={isAddModalVisible}
           onSave={this.handleAddRestaurant}
+          onCancel={this.handleCancelAddRestaurant}
         />
         <List containerStyle={{ flex: 1 }}>
           <FlatList

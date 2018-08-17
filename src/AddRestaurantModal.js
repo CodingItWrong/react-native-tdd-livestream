@@ -27,6 +27,12 @@ export default class AddRestaurantModal extends Component {
     onSave(restaurantName);
   }
 
+  handlePressCancelButton = () => {
+    const { onCancel } = this.props;
+    this.setState({ restaurantName: '' });
+    onCancel();
+  }
+
   render() {
     const { visible } = this.props;
     const { restaurantName } = this.state;
@@ -49,6 +55,11 @@ export default class AddRestaurantModal extends Component {
           testID="saveRestaurantButton"
           title="Save Restaurant"
           onPress={this.handlePressSaveButton}
+        />
+        <Button
+          testID="cancelAddRestaurantButton"
+          title="Cancel"
+          onPress={this.handlePressCancelButton}
         />
       </Modal>
     );

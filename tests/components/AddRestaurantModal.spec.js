@@ -37,4 +37,34 @@ describe('AddRestaurantModal', () => {
       expect(handleSave).toHaveBeenCalledWith(messageText);
     });
   });
+
+  describe('upon cancellation', () => {
+    let handleCancel;
+    let wrapper;
+
+    beforeEach(() => {
+      handleCancel = jest.fn();
+      wrapper = shallow(
+        <AddRestaurantModal
+          visible={true}
+          onCancel={handleCancel}
+        />,
+      );
+
+      wrapper.findWhere(testID('restaurantNameTextField'))
+        .simulate('changeText', 'Hello, world!');
+      wrapper.findWhere(testID('cancelAddRestaurantButton'))
+        .simulate('press');
+    });
+
+    it('clears the text field', () => {
+      expect(wrapper.findWhere(
+        testID('restaurantNameTextField'),
+      ).props().value).toEqual('');
+    });
+
+    it('calls the onCancel handler', () => {
+      expect(handleCancel).toHaveBeenCalled();
+    });
+  });
 });
