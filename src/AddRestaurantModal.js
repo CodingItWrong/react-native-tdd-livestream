@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {
   Modal,
-  View,
 } from 'react-native';
 import {
   Button,
