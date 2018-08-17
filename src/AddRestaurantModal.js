@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import {
-  Button,
-  TextInput,
+  Modal,
   View,
 } from 'react-native';
+import {
+  Button,
+  FormLabel,
+  FormInput,
+  Text,
+} from 'react-native-elements';
 
 export default class AddRestaurantModal extends Component {
   state = {
@@ -18,6 +23,8 @@ export default class AddRestaurantModal extends Component {
     const { onSave } = this.props;
     const { restaurantName } = this.state;
 
+    this.setState({ restaurantName: '' });
+
     onSave(restaurantName);
   }
 
@@ -25,13 +32,16 @@ export default class AddRestaurantModal extends Component {
     const { visible } = this.props;
     const { restaurantName } = this.state;
 
-    if (!visible) {
-      return null;
-    }
-
     return (
-      <View>
-        <TextInput
+      <Modal
+        visible={visible}
+        animationType='slide'
+      >
+        <Text h3 style={{ margin: 20 }}>
+          Add Restaurant
+        </Text>
+        <FormLabel>Restaurant Name</FormLabel>
+        <FormInput
           testID="restaurantNameTextField"
           value={restaurantName}
           onChangeText={this.handleChangeText}
@@ -41,7 +51,7 @@ export default class AddRestaurantModal extends Component {
           title="Save Restaurant"
           onPress={this.handlePressSaveButton}
         />
-      </View>
+      </Modal>
     );
   }
 };

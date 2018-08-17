@@ -6,11 +6,15 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest tests/**/*.spec.js",
+    "testonly": "jest",
     "lint": "eslint *.js e2e/*.js tests/**/*.js"
   },
   "dependencies": {
     "react": "16.3.1",
-    "react-native": "0.55.4"
+    "react-native": "0.55.4",
+    "react-native-elements": "^0.19.1",
+    "react-native-vector-icons": "^5.0.0",
+    "react-navigation": "^2.11.2"
   },
   "devDependencies": {
     "@jonny/react-native-mock": "^0.4.2",
