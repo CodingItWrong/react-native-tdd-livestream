@@ -6,12 +6,14 @@ import {
   Button,
   FormLabel,
   FormInput,
+  FormValidationMessage,
   Text,
 } from 'react-native-elements';
 
 export default class AddRestaurantModal extends Component {
   state = {
     restaurantName: '',
+    restaurantNameErrorMessage: null,
   }
 
   handleChangeText = (restaurantName) => {
@@ -21,6 +23,13 @@ export default class AddRestaurantModal extends Component {
   handlePressSaveButton = () => {
     const { onSave } = this.props;
     const { restaurantName } = this.state;
+
+    if (restaurantName === '') {
+      this.setState({
+        restaurantNameErrorMessage: 'Required',
+      });
+      return;
+    }
 
     this.setState({ restaurantName: '' });
 
@@ -35,7 +44,7 @@ export default class AddRestaurantModal extends Component {
 
   render() {
     const { visible } = this.props;
-    const { restaurantName } = this.state;
+    const { restaurantName, restaurantNameErrorMessage } = this.state;
 
     return (
       <Modal
@@ -52,6 +61,11 @@ export default class AddRestaurantModal extends Component {
           onChangeText={this.handleChangeText}
           autoFocus={true}
         />
+        <FormValidationMessage
+          testID="restaurantNameErrorMessage"
+        >
+          {restaurantNameErrorMessage}
+        </FormValidationMessage>
         <Button
           testID="saveRestaurantButton"
           title="Save Restaurant"

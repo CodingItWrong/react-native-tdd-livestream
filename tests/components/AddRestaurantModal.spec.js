@@ -1,5 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import {
+  FormValidationMessage,
+} from 'react-native-elements';
 import AddRestaurantModal from '../../src/AddRestaurantModal';
 
 describe('AddRestaurantModal', () => {
@@ -35,6 +38,36 @@ describe('AddRestaurantModal', () => {
 
     it('calls the onSave handler with the entered text', () => {
       expect(handleSave).toHaveBeenCalledWith(messageText);
+    });
+  });
+
+  describe('upon submit with invalid data', () => {
+    let handleSave;
+    let wrapper;
+
+    beforeEach(() => {
+      handleSave = jest.fn();
+      wrapper = shallow(
+        <AddRestaurantModal
+          visible={true}
+          onSave={handleSave}
+        />,
+      );
+
+      wrapper.findWhere(testID('saveRestaurantButton'))
+        .simulate('press');
+    });
+
+    it('displays a validation error', () => {
+      expect(wrapper.contains(
+        <FormValidationMessage
+          testID="restaurantNameErrorMessage"
+        >Required</FormValidationMessage>,
+      )).toEqual(true);
+    });
+
+    it('does not call the onSave handler', () => {
+      expect(handleSave).not.toHaveBeenCalled();
     });
   });
 
