@@ -4,12 +4,8 @@ import RestaurantList from './RestaurantList';
 import DishList from './DishList';
 
 const RootStack = createStackNavigator({
-  RestaurantList: {
-    screen: RestaurantList,
-  },
-  DishList: {
-    screen: DishList,
-  },
+  RestaurantList,
+  DishList,
 });
 
 export default class App extends Component {
