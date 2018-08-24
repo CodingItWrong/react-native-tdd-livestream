@@ -10,14 +10,19 @@ import {
   Text,
 } from 'react-native-elements';
 
+const initialState = {
+  restaurantName: '',
+  restaurantNameErrorMessage: null,
+};
+
 export default class AddRestaurantModal extends Component {
-  state = {
-    restaurantName: '',
-    restaurantNameErrorMessage: null,
-  }
+  state = initialState;
 
   handleChangeText = (restaurantName) => {
-    this.setState({ restaurantName });
+    this.setState({
+      restaurantName,
+      restaurantNameErrorMessage: null,
+    });
   }
 
   handlePressSaveButton = () => {
@@ -31,14 +36,14 @@ export default class AddRestaurantModal extends Component {
       return;
     }
 
-    this.setState({ restaurantName: '' });
+    this.setState(initialState);
 
     onSave(restaurantName);
   }
 
   handlePressCancelButton = () => {
     const { onCancel } = this.props;
-    this.setState({ restaurantName: '' });
+    this.setState(initialState);
     onCancel();
   }
 
