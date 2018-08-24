@@ -31,7 +31,10 @@ export default class AddRestaurantModal extends Component {
       return;
     }
 
-    this.setState({ restaurantName: '' });
+    this.setState({
+      restaurantName: '',
+      restaurantNameErrorMessage: null,
+    });
 
     onSave(restaurantName);
   }

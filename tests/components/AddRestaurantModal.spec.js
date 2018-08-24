@@ -24,6 +24,8 @@ describe('AddRestaurantModal', () => {
         />,
       );
 
+      wrapper.findWhere(testID('saveRestaurantButton'))
+        .simulate('press');
       wrapper.findWhere(testID('restaurantNameTextField'))
         .simulate('changeText', messageText);
       wrapper.findWhere(testID('saveRestaurantButton'))
@@ -34,6 +36,14 @@ describe('AddRestaurantModal', () => {
       expect(wrapper.findWhere(
         testID('restaurantNameTextField'),
       ).props().value).toEqual('');
+    });
+
+    it('clears validation errors', () => {
+      expect(wrapper.contains(
+        <FormValidationMessage
+          testID="restaurantNameErrorMessage"
+        >Required</FormValidationMessage>,
+      )).toEqual(false);
     });
 
     it('calls the onSave handler with the entered text', () => {
