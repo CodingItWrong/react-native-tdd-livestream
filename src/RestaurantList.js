@@ -17,7 +17,7 @@ export default class RestaurantList extends Component {
 
   state = {
     isAddModalVisible: false,
-    restaurantNames: [],
+    restaurants: [],
   }
 
   showAddRestaurantModal = () => {
@@ -25,9 +25,13 @@ export default class RestaurantList extends Component {
   }
 
   handleAddRestaurant = (newRestaurantName) => {
-    this.setState(({ restaurantNames }) => ({
+    const newRestaurant = {
+      name: newRestaurantName,
+      dishNames: [],
+    };
+    this.setState(({ restaurants }) => ({
       isAddModalVisible: false,
-      restaurantNames: [newRestaurantName, ...restaurantNames],
+      restaurants: [newRestaurant, ...restaurants],
     }));
   }
 
@@ -37,8 +41,14 @@ export default class RestaurantList extends Component {
     });
   }
 
+  handleChooseRestaurant = (restaurant) => {
+    const { navigation } = this.props;
+
+    navigation.navigate('DishList', { restaurant });
+  }
+
   render() {
-    const { isAddModalVisible, restaurantNames } = this.state;
+    const { isAddModalVisible, restaurants } = this.state;
     return (
       <View style={{ flex: 1 }}>
         <Button
@@ -53,9 +63,14 @@ export default class RestaurantList extends Component {
         />
         <List containerStyle={{ flex: 1 }}>
           <FlatList
-            data={restaurantNames}
-            keyExtractor={item => item}
-            renderItem={({ item }) => <ListItem title={item} />}
+            data={restaurants}
+            keyExtractor={item => item.name}
+            renderItem={({ item: restaurant }) => (
+              <ListItem
+                title={restaurant.name}
+                onPress={() => this.handleChooseRestaurant(restaurant)}
+              />
+            )}
           />
         </List>
       </View>

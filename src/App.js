@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { createStackNavigator } from 'react-navigation';
 import RestaurantList from './RestaurantList';
+import DishList from './DishList';
 
 const RootStack = createStackNavigator({
-  Home: {
-    screen: RestaurantList,
-  },
+  RestaurantList,
+  DishList,
 });
 
 export default class App extends Component {
