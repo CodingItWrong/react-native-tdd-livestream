@@ -10,6 +10,31 @@ describe('AddRestaurantModal', () => {
     return cmp => cmp.props().testID === id;
   }
 
+  describe('upon typing', () => {
+    let wrapper;
+
+    beforeEach(() => {
+      wrapper = shallow(
+        <AddRestaurantModal
+          visible={true}
+        />,
+      );
+
+      wrapper.findWhere(testID('saveRestaurantButton'))
+        .simulate('press');
+      wrapper.findWhere(testID('restaurantNameTextField'))
+        .simulate('changeText', 'Hello wo');
+    });
+
+    it('clears validation errors', () => {
+      expect(wrapper.contains(
+        <FormValidationMessage
+          testID="restaurantNameErrorMessage"
+        >Required</FormValidationMessage>,
+      )).toEqual(false);
+    });
+  });
+
   describe('upon submit', () => {
     const messageText = 'Hello, world!';
     let handleSave;

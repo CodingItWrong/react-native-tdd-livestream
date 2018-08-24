@@ -19,7 +19,10 @@ export default class AddRestaurantModal extends Component {
   state = initialState;
 
   handleChangeText = (restaurantName) => {
-    this.setState({ restaurantName });
+    this.setState({
+      restaurantName,
+      restaurantNameErrorMessage: null,
+    });
   }
 
   handlePressSaveButton = () => {
