@@ -11,6 +11,12 @@ import {
 import AddDishModal from './AddDishModal';
 
 export default class DishList extends Component {
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: navigation.getParam('restaurantName'),
+    };
+  };
+
   state = {
     isAddModalVisible: false,
     dishNames: [],

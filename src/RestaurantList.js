@@ -37,10 +37,10 @@ export default class RestaurantList extends Component {
     });
   }
 
-  handleChooseRestaurant = () => {
+  handleChooseRestaurant = (restaurantName) => {
     const { navigation } = this.props;
 
-    navigation.navigate('DishList');
+    navigation.navigate('DishList', { restaurantName });
   }
 
   render() {
@@ -61,10 +61,10 @@ export default class RestaurantList extends Component {
           <FlatList
             data={restaurantNames}
             keyExtractor={item => item}
-            renderItem={({ item }) => (
+            renderItem={({ item: restaurantName }) => (
               <ListItem
-                title={item}
-                onPress={this.handleChooseRestaurant}
+                title={restaurantName}
+                onPress={() => this.handleChooseRestaurant(restaurantName)}
               />
             )}
           />
