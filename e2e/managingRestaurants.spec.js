@@ -4,6 +4,10 @@ describe('Managing Restaurants', () => {
   });
 
   it('should allow creating a restaurant', async () => {
+    await createRestaurant();
+  });
+
+  async function createRestaurant() {
     const restaurantName = 'Sushi Place';
 
     await element(by.id('newRestaurantButton')).tap();
@@ -12,5 +16,5 @@ describe('Managing Restaurants', () => {
 
     await expect(element(by.label(restaurantName))).toBeVisible();
     await expect(element(by.id('restaurantNameTextField'))).toBeNotVisible();
-  });
+  }
 });
