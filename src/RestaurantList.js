@@ -37,6 +37,12 @@ export default class RestaurantList extends Component {
     });
   }
 
+  handleChooseRestaurant = () => {
+    const { navigation } = this.props;
+
+    navigation.navigate('DishList');
+  }
+
   render() {
     const { isAddModalVisible, restaurantNames } = this.state;
     return (
@@ -55,7 +61,12 @@ export default class RestaurantList extends Component {
           <FlatList
             data={restaurantNames}
             keyExtractor={item => item}
-            renderItem={({ item }) => <ListItem title={item} />}
+            renderItem={({ item }) => (
+              <ListItem
+                title={item}
+                onPress={this.handleChooseRestaurant}
+              />
+            )}
           />
         </List>
       </View>
