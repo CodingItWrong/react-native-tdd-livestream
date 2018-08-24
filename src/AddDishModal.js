@@ -6,11 +6,13 @@ import {
   Button,
   FormLabel,
   FormInput,
+  FormValidationMessage,
   Text,
 } from 'react-native-elements';
 
 const initialState = {
   dishName: '',
+  dishNameErrorMessage: null,
 };
 
 export default class AddDishModal extends Component {
@@ -19,6 +21,7 @@ export default class AddDishModal extends Component {
   handleChangeText = (dishName) => {
     this.setState({
       dishName,
+      dishNameErrorMessage: null,
     });
   }
 
@@ -26,12 +29,27 @@ export default class AddDishModal extends Component {
     const { onSave } = this.props;
     const { dishName } = this.state;
 
+    if (dishName === '') {
+      this.setState({
+        dishNameErrorMessage: 'Required',
+      });
+      return;
+    }
+
+    this.setState(initialState);
+
     onSave(dishName);
+  }
+
+  handlePressCancelButton = () => {
+    const { onCancel } = this.props;
+    this.setState(initialState);
+    onCancel();
   }
 
   render() {
     const { visible } = this.props;
-    const { dishName } = this.state;
+    const { dishName, dishNameErrorMessage } = this.state;
 
     return (
       <Modal
@@ -48,10 +66,20 @@ export default class AddDishModal extends Component {
           onChangeText={this.handleChangeText}
           autoFocus={true}
         />
+        <FormValidationMessage
+          testID="dishNameErrorMessage"
+        >
+          {dishNameErrorMessage}
+        </FormValidationMessage>
         <Button
           testID="saveDishButton"
           title="Save Dish"
           onPress={this.handlePressSaveButton}
+        />
+        <Button
+          testID="cancelAddDishButton"
+          title="Cancel"
+          onPress={this.handlePressCancelButton}
         />
       </Modal>
     );

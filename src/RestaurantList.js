@@ -27,6 +27,7 @@ export default class RestaurantList extends Component {
   handleAddRestaurant = (newRestaurantName) => {
     const newRestaurant = {
       name: newRestaurantName,
+      dishNames: [],
     };
     this.setState(({ restaurants }) => ({
       isAddModalVisible: false,
@@ -42,9 +43,8 @@ export default class RestaurantList extends Component {
 
   handleChooseRestaurant = (restaurant) => {
     const { navigation } = this.props;
-    const restaurantName = restaurant.name;
 
-    navigation.navigate('DishList', { restaurantName });
+    navigation.navigate('DishList', { restaurant });
   }
 
   render() {

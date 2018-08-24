@@ -13,13 +13,20 @@ import AddDishModal from './AddDishModal';
 export default class DishList extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
-      title: navigation.getParam('restaurantName'),
+      title: navigation.getParam('restaurant').name,
     };
   };
 
-  state = {
-    isAddModalVisible: false,
-    dishNames: [],
+  constructor(props) {
+    super(props);
+
+    const { navigation } = this.props;
+    const { dishNames } = navigation.getParam('restaurant');
+
+    this.state = {
+      isAddModalVisible: false,
+      dishNames,
+    };
   }
 
   showAddDishModal = () => {
