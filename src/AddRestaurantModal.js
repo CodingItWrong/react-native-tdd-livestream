@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import {
   Modal,
-  View,
 } from 'react-native';
 import {
   Button,
   FormLabel,
   FormInput,
+  FormValidationMessage,
   Text,
 } from 'react-native-elements';
 
 export default class AddRestaurantModal extends Component {
   state = {
     restaurantName: '',
+    restaurantNameErrorMessage: null,
   }
 
   handleChangeText = (restaurantName) => {
@@ -23,14 +24,27 @@ export default class AddRestaurantModal extends Component {
     const { onSave } = this.props;
     const { restaurantName } = this.state;
 
+    if (restaurantName === '') {
+      this.setState({
+        restaurantNameErrorMessage: 'Required',
+      });
+      return;
+    }
+
     this.setState({ restaurantName: '' });
 
     onSave(restaurantName);
   }
 
+  handlePressCancelButton = () => {
+    const { onCancel } = this.props;
+    this.setState({ restaurantName: '' });
+    onCancel();
+  }
+
   render() {
     const { visible } = this.props;
-    const { restaurantName } = this.state;
+    const { restaurantName, restaurantNameErrorMessage } = this.state;
 
     return (
       <Modal
@@ -45,11 +59,22 @@ export default class AddRestaurantModal extends Component {
           testID="restaurantNameTextField"
           value={restaurantName}
           onChangeText={this.handleChangeText}
+          autoFocus={true}
         />
+        <FormValidationMessage
+          testID="restaurantNameErrorMessage"
+        >
+          {restaurantNameErrorMessage}
+        </FormValidationMessage>
         <Button
           testID="saveRestaurantButton"
           title="Save Restaurant"
           onPress={this.handlePressSaveButton}
+        />
+        <Button
+          testID="cancelAddRestaurantButton"
+          title="Cancel"
+          onPress={this.handlePressCancelButton}
         />
       </Modal>
     );
