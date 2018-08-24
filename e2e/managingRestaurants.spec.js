@@ -3,7 +3,7 @@ describe('Managing Restaurants', () => {
     await device.reloadReactNative();
   });
 
-  it('should allow creating a restaurant', async () => {
+  it('should allow managing restaurants', async () => {
     await createRestaurant();
   });
 
