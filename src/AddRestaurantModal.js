@@ -41,7 +41,10 @@ export default class AddRestaurantModal extends Component {
 
   handlePressCancelButton = () => {
     const { onCancel } = this.props;
-    this.setState({ restaurantName: '' });
+    this.setState({
+      restaurantName: '',
+      restaurantNameErrorMessage: null,
+    });
     onCancel();
   }
 
