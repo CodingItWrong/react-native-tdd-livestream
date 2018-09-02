@@ -30,5 +30,13 @@ describe('Managing Restaurants', () => {
 
     await expect(element(by.label(dishName))).toBeVisible();
     await expect(element(by.id('dishNameTextField'))).toBeNotVisible();
+
+    // ensure dishes persist
+    await element(
+      by.traits(['button'])
+        .withDescendant(by.label('Restaurants')),
+    ).tap();
+    await element(by.label(restaurantName)).tap();
+    await expect(element(by.label(dishName))).toBeVisible();
   }
 });
