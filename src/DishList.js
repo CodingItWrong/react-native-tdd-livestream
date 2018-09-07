@@ -9,7 +9,9 @@ import {
   ListItem,
 } from 'react-native-elements';
 import AddDishModal from './AddDishModal';
+import { observer } from 'mobx-react';
 
+@observer
 export default class DishList extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
@@ -20,12 +22,8 @@ export default class DishList extends Component {
   constructor(props) {
     super(props);
 
-    const { navigation } = this.props;
-    const { dishNames } = navigation.getParam('restaurant');
-
     this.state = {
       isAddModalVisible: false,
-      dishNames,
     };
   }
 
@@ -34,14 +32,18 @@ export default class DishList extends Component {
   }
 
   handleAddDish = (newDishName) => {
-    this.setState(({ dishNames }) => ({
+    const restaurant = this.props.navigation.getParam('restaurant');
+
+    restaurant.addDish(newDishName);
+
+    this.setState({
       isAddModalVisible: false,
-      dishNames: [newDishName, ...dishNames],
-    }));
+    });
   }
 
   render() {
-    const { isAddModalVisible, dishNames } = this.state;
+    const { isAddModalVisible } = this.state;
+    const { dishNames } = this.props.navigation.getParam('restaurant');
     return (
       <View style={{ flex: 1 }}>
         <Button
@@ -55,7 +57,7 @@ export default class DishList extends Component {
         />
         <List containerStyle={{ flex: 1 }}>
           <FlatList
-            data={dishNames}
+            data={dishNames.slice()}
             keyExtractor={item => item}
             renderItem={({ item }) => (
               <ListItem
