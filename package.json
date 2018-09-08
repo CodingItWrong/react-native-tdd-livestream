@@ -10,6 +10,8 @@
     "lint": "eslint *.js e2e/*.js tests/**/*.js"
   },
   "dependencies": {
+    "mobx": "^5.1.0",
+    "mobx-react": "^5.2.5",
     "react": "16.3.1",
     "react-native": "0.55.4",
     "react-native-elements": "^0.19.1",
@@ -20,6 +22,7 @@
     "@jonny/react-native-mock": "^0.4.2",
     "babel-eslint": "^8.2.6",
     "babel-jest": "23.4.0",
+    "babel-plugin-transform-decorators-legacy": "^1.3.5",
     "babel-preset-react-native": "4.0.0",
     "detox": "^8.0.0",
     "enzyme": "^3.3.0",

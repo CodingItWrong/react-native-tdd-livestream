@@ -8,8 +8,10 @@ import {
   List,
   ListItem,
 } from 'react-native-elements';
+import { observer, inject } from 'mobx-react';
 import AddRestaurantModal from './AddRestaurantModal';
 
+@observer @inject('restaurantStore')
 export default class RestaurantList extends Component {
   static navigationOptions = {
     title: 'Restaurants',
@@ -17,7 +19,6 @@ export default class RestaurantList extends Component {
 
   state = {
     isAddModalVisible: false,
-    restaurants: [],
   }
 
   showAddRestaurantModal = () => {
@@ -25,14 +26,13 @@ export default class RestaurantList extends Component {
   }
 
   handleAddRestaurant = (newRestaurantName) => {
-    const newRestaurant = {
-      name: newRestaurantName,
-      dishNames: [],
-    };
-    this.setState(({ restaurants }) => ({
+    const { restaurantStore } = this.props;
+
+    restaurantStore.addRestaurant(newRestaurantName);
+
+    this.setState({
       isAddModalVisible: false,
-      restaurants: [newRestaurant, ...restaurants],
-    }));
+    });
   }
 
   handleCancelAddRestaurant = () => {
@@ -48,7 +48,8 @@ export default class RestaurantList extends Component {
   }
 
   render() {
-    const { isAddModalVisible, restaurants } = this.state;
+    const { restaurants } = this.props.restaurantStore;
+    const { isAddModalVisible } = this.state;
     return (
       <View style={{ flex: 1 }}>
         <Button
@@ -63,7 +64,7 @@ export default class RestaurantList extends Component {
         />
         <List containerStyle={{ flex: 1 }}>
           <FlatList
-            data={restaurants}
+            data={restaurants.slice()}
             keyExtractor={item => item.name}
             renderItem={({ item: restaurant }) => (
               <ListItem
