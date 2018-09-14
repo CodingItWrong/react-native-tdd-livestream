@@ -6,6 +6,7 @@ import DishList from './DishList';
 import RestaurantStore from './store/RestaurantStore';
 
 const restaurantStore = new RestaurantStore();
+restaurantStore.loadAll();
 
 const RootStack = createStackNavigator({
   RestaurantList,

@@ -8,6 +8,33 @@ describe('RestaurantStore', () => {
     });
   });
 
+  describe('loadAll', () => {
+    it('loads restaurants from the API', async () => {
+      const api = {
+        get() {
+          return Promise.resolve({
+            data: {
+              data: [
+                {
+                  attributes: {
+                    name: 'Burger Place',
+                  },
+                },
+              ],
+            },
+          });
+        },
+      };
+      const store = new RestaurantStore(api);
+
+      await store.loadAll();
+
+      expect(store.restaurants.length).toEqual(1);
+      const restaurant = store.restaurants[0];
+      expect(restaurant.name).toEqual('Burger Place');
+    });
+  });
+
   describe('addRestaurant', () => {
     it('adds a new Restaurant instance to the restaurant list', () => {
       const name = 'Sushi Place';
