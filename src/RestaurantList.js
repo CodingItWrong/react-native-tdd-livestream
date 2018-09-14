@@ -11,7 +11,7 @@ import {
 import { observer, inject } from 'mobx-react';
 import AddRestaurantModal from './AddRestaurantModal';
 
-@observer @inject('restaurantStore')
+@inject('restaurantStore') @observer
 export default class RestaurantList extends Component {
   static navigationOptions = {
     title: 'Restaurants',

@@ -4,8 +4,9 @@ import { Provider } from 'mobx-react';
 import RestaurantList from './RestaurantList';
 import DishList from './DishList';
 import RestaurantStore from './store/RestaurantStore';
+import api from './store/api';
 
-const restaurantStore = new RestaurantStore();
+const restaurantStore = new RestaurantStore(api);
 restaurantStore.loadAll();
 
 const RootStack = createStackNavigator({

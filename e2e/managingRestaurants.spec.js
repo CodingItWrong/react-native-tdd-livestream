@@ -6,9 +6,14 @@ describe('Managing Restaurants', () => {
   it('should allow managing restaurants', async () => {
     const restaurantName = 'Sushi Place';
 
+    await confirmInitialRestaurantPresent('Burger Place');
     await createRestaurant(restaurantName);
     await createDish(restaurantName);
   });
+
+  async function confirmInitialRestaurantPresent(restaurantName) {
+    await expect(element(by.label(restaurantName))).toBeVisible();
+  }
 
   async function createRestaurant(restaurantName) {
     await element(by.id('newRestaurantButton')).tap();
