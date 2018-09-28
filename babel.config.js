@@ -1,0 +1,6 @@
+module.exports = {
+  "presets": ["react-native"],
+  "plugins": [
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+  ],
+};
