@@ -12,4 +12,7 @@ export default {
       },
     });
   },
+  post() {
+    return Promise.resolve();
+  },
 };
