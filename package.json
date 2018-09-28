@@ -24,7 +24,7 @@
     "@babel/plugin-proposal-decorators": "7.0.0-beta.47",
     "@jonny/react-native-mock": "^0.4.2",
     "babel-eslint": "^8.2.6",
-    "babel-jest": "23.4.0",
+    "babel-jest": "23.6.0",
     "babel-preset-react-native": "^5",
     "detox": "^9.0.3",
     "enzyme": "^3.3.0",
@@ -36,7 +36,7 @@
     "eslint-plugin-jest": "^21.18.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.10.0",
-    "jest": "23.4.1",
+    "jest": "23.6.0",
     "mocha": "^5.2.0",
     "react-test-renderer": "16.4.2"
   },
