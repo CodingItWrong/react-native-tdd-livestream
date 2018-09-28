@@ -6,6 +6,7 @@ const api = axios.create({
   headers: {
     'Authorization':
     `Bearer ${env.AUTH_TOKEN}`,
+    'Content-Type': 'application/vnd.api+json',
   },
 });
 
