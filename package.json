@@ -21,8 +21,10 @@
     "react-navigation": "^2.11.2"
   },
   "devDependencies": {
+    "@babel/core": "7.0.0-beta.47",
     "@babel/plugin-proposal-decorators": "7.0.0-beta.47",
     "@jonny/react-native-mock": "^0.4.2",
+    "babel-core": "^7.0.0-0",
     "babel-eslint": "^8.2.6",
     "babel-jest": "23.6.0",
     "babel-preset-react-native": "^5",
@@ -44,6 +46,9 @@
     "preset": "react-native",
     "setupFiles": [
       "./tests/setup.js"
+    ],
+    "transformIgnorePatterns": [
+      "/node_modules/(?!react-native).+\\.js$"
     ]
   },
   "detox": {
