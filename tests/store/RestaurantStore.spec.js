@@ -36,15 +36,37 @@ describe('RestaurantStore', () => {
   });
 
   describe('addRestaurant', () => {
-    it('adds a new Restaurant instance to the restaurant list', () => {
-      const name = 'Sushi Place';
-      const store = new RestaurantStore();
-      store.addRestaurant(name);
+    const name = 'Sushi Place';
+    let api;
+    let store;
 
+    beforeEach(() => {
+      api = {
+        post: jest.fn(),
+      };
+      store = new RestaurantStore(api);
+
+      return store.addRestaurant(name);
+    });
+
+    it('adds a new Restaurant instance to the restaurant list', () => {
       expect(store.restaurants.length).toEqual(1);
       const restaurant = store.restaurants[0];
       expect(restaurant.name).toEqual(name);
       expect(restaurant.dishNames).toEqual([]);
+    });
+
+    it('posts the new restaurant to the API', () => {
+      const expectedBody = {
+        data: {
+          type: 'restaurants',
+          attributes: { name },
+        },
+      };
+      expect(api.post).toHaveBeenCalledWith(
+        '/restaurants',
+        expectedBody,
+      );
     });
   });
 });

@@ -16,8 +16,14 @@ export default class RestaurantStore {
     ));
   }
 
-  addRestaurant(name) {
+  async addRestaurant(name) {
     const newRestaurant = new Restaurant(name);
+    await this.api.post('/restaurants', {
+      data: {
+        type: 'restaurants',
+        attributes: { name },
+      },
+    });
     this.restaurants.push(newRestaurant);
   }
 }
