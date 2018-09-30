@@ -1,6 +1,6 @@
 # react-native-tdd-livestream
 
-A React Native project being built with TDD on [my Twitch live stream](https://www.twitch.tv/codingitwrong).
+A React Native project built with TDD on [my Twitch live stream](https://www.twitch.tv/codingitwrong). Follow along with the building of it by watching [the stream recordings](https://www.youtube.com/watch?v=vwIgAHnjc1k&list=PLXXnezSEtvNPZroRdvjhEVzOhURl572Lf).
 
 ## Prerequisites
 
