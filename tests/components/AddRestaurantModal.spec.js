@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { render } from 'react-native-testing-library';
 import {
   FormValidationMessage,
 } from 'react-native-elements';
@@ -35,10 +36,11 @@ describe('AddRestaurantModal', () => {
     });
   });
 
-  describe('upon submit', () => {
+  describe.only('upon submit', () => {
     const messageText = 'Hello, world!';
     let handleSave;
     let wrapper;
+    let getByTestId;
 
     beforeEach(() => {
       handleSave = jest.fn();
@@ -48,6 +50,12 @@ describe('AddRestaurantModal', () => {
           onSave={handleSave}
         />,
       );
+      ({ getByTestId } = render(
+        <AddRestaurantModal
+          visible={true}
+          onSave={handleSave}
+        />
+      ));
 
       wrapper.findWhere(testID('saveRestaurantButton'))
         .simulate('press');
@@ -57,7 +65,7 @@ describe('AddRestaurantModal', () => {
         .simulate('press');
     });
 
-    it('clears the text field', () => {
+    it.only('clears the text field', () => {
       expect(wrapper.findWhere(
         testID('restaurantNameTextField'),
       ).props().value).toEqual('');
